@@ -67,6 +67,13 @@ btn.addEventListener("click",()=>{
     }
     const userDetails = {name:name.value,mobile:mobile.value,email:email.value,password:password.value};
     const storedData = JSON.parse(localStorage.getItem("users"));
+    let userExist = false;
+    storedData.some((curr) => {
+      if (curr.email === userDetails.email) {
+        userExist = true;
+      }
+    });
+    if (userExist) return alert("User Already Exist");
     console.log("local storage data",storedData);
     if(storedData===null){
         localStorage.setItem("users",JSON.stringify( [userDetails]));
